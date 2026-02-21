@@ -1,59 +1,54 @@
-<section id="compensation" class="my-5 py-5 border-top">
+<section id="compensation" class="my-5 py-5">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6 pr-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
-        <h2 class="font-weight-bold mb-3 text-white">Active <span class="text-gradient">Countermeasures</span></h2>
-        <p class="lead text-muted mb-4">Why just kick a cheater when you can let the community fight back? When an unfair advantage is detected, FairPlay briefly empowers the victim with the <strong>exact same abilities</strong> to turn the tide.</p>
-        <ul class="list-unstyled">
-          <li class="mb-3 d-flex">
-            <i class="bi bi-shield-shaded text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
-            <span class="text-muted"><strong>Reach equalizer:</strong> If a cheater strikes with 5-block reach, their target instantly gets 5-block reach strictly against them.</span>
+        <h2 class="font-weight-bold mb-4 text-white" style="font-size: 2.2rem; letter-spacing: -1px;">Active <span class="text-gradient">Countermeasures</span></h2>
+        <p class="ef-card-text mb-4" style="font-size: 1.05rem;">Why simply kick a cheater when you can turn the community against them? When an unfair advantage is confirmed, FairPlay briefly empowers their target with the exact same abilities.</p>
+        <ul class="list-unstyled mt-4">
+          <li class="mb-4 d-flex">
+            <div class="icon-gradient mr-3"><i class="bi bi-crosshair" style="font-size: 1.5rem;"></i></div>
+            <div>
+              <h5 class="text-white font-weight-bold mb-1" style="font-size: 1rem;">Reach Equalizer</h5>
+              <span class="ef-card-text small">If a cheater hits from 5 blocks, the victim gets 5-block reach strictly against the cheater.</span>
+            </div>
           </li>
-          <li class="mb-3 d-flex">
-            <i class="bi bi-cpu text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
-            <span class="text-muted"><strong>Anti-retaliation logic:</strong> Only triggers against confirmed cheaters. Legitimate player combat remains 100% unaffected.</span>
-          </li>
-          <li class="mb-3 d-flex">
-            <i class="bi bi-controller text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
-            <span class="text-muted"><strong>Active discouragement:</strong> Cheaters lose their core incentive when their victims become unkillable counter-threats.</span>
+          <li class="mb-4 d-flex">
+            <div class="icon-gradient mr-3"><i class="bi bi-lock-fill" style="font-size: 1.5rem;"></i></div>
+            <div>
+              <h5 class="text-white font-weight-bold mb-1" style="font-size: 1rem;">Targeted Retaliation</h5>
+              <span class="ef-card-text small">Countermeasures lock strictly onto the verified cheater. Legitimate player combat is entirely unaffected.</span>
+            </div>
           </li>
         </ul>
       </div>
 
       <div class="col-lg-6" data-aos="fade-left">
-        <div class="card p-2 shadow-lg">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title mb-0">Countermeasure Simulator</h5>
-              <span class="badge badge-pill px-3 py-1" style="background: rgba(106,76,255,0.2); border: 1px solid rgba(106,76,255,0.4); color: #fff;">Interactive</span>
-            </div>
-            <p class="text-muted small mb-4">Adjust the cheater's detected advantage below to see how the system immediately responds.</p>
+        <div class="ef-card p-4">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h5 class="ef-card-title mb-0">Countermeasure Simulator</h5>
+            <span class="badge badge-pill px-3 py-1 text-white" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);">Interactive</span>
+          </div>
+          <p class="ef-card-text small mb-4">Adjust the cheater's detected advantage below to see the system's automated response.</p>
 
-            <form id="comp-form">
-              <div class="form-group mb-4">
-                <label class="text-muted small font-weight-bold text-uppercase tracking-wide">Cheater's Detected Reach</label>
-                <input id="cheatReach" type="range" class="custom-range mt-2" min="3.0" max="7.0" step="0.1" value="4.5">
-                <div class="text-right text-white font-weight-bold mt-1" id="reachValDisplay">4.5 Blocks</div>
-              </div>
-
-              <div class="form-group mb-4">
-                <label class="text-muted small font-weight-bold text-uppercase tracking-wide">Cheater's Aura Speed</label>
-                <input id="cheatCps" type="range" class="custom-range mt-2" min="10" max="30" step="1" value="18">
-                <div class="text-right text-white font-weight-bold mt-1" id="cpsValDisplay">18 CPS</div>
-              </div>
-            </form>
-
-            <div class="p-4 rounded mt-4" style="background: rgba(0,0,0,0.4); border: 1px solid var(--card-border);">
-              <div class="small text-uppercase text-muted mb-2 font-weight-bold">System Response Status</div>
-              <div class="h6 mb-2" style="color: var(--accent-3); font-weight: 700;">Victim Granted Advantage:</div>
-              <div class="text-white mb-2" id="responseOutput" style="font-size: 1.1rem;">
-                <i class="bi bi-lightning-charge-fill text-warning mr-2"></i> <strong>4.5 Blocks Reach</strong> & <strong>18 CPS</strong> Aura
-              </div>
-              <div class="text-muted small border-top pt-2 mt-2">
-                <i class="bi bi-lock-fill mr-1"></i> Target locked strictly onto cheater for 15 seconds.
-              </div>
+          <form id="comp-form">
+            <div class="form-group mb-4">
+              <label class="text-white small font-weight-bold text-uppercase tracking-wide">Cheater's Reach Distance</label>
+              <input id="cheatReach" type="range" class="custom-range w-100 mt-2" min="3.0" max="7.0" step="0.1" value="4.5">
+              <div class="text-right text-gradient font-weight-bold mt-2" id="reachValDisplay">4.5 Blocks</div>
             </div>
 
+            <div class="form-group mb-4">
+              <label class="text-white small font-weight-bold text-uppercase tracking-wide">Cheater's Aura Speed</label>
+              <input id="cheatCps" type="range" class="custom-range w-100 mt-2" min="10" max="30" step="1" value="18">
+              <div class="text-right text-gradient font-weight-bold mt-2" id="cpsValDisplay">18 CPS</div>
+            </div>
+          </form>
+
+          <div class="p-3 rounded mt-4" style="background: var(--bg-main); border: 1px solid var(--border-color);">
+            <div class="small text-uppercase mb-2 font-weight-bold" style="color: var(--text-muted);">System Action:</div>
+            <div class="text-white mb-2" id="responseOutput" style="font-size: 1.05rem;">
+              <i class="bi bi-lightning-charge-fill mr-2" style="color: #F5B84B;"></i> <strong>4.5 Blocks Reach</strong> & <strong>18 CPS</strong> Aura Granted
+            </div>
           </div>
         </div>
       </div>
@@ -77,7 +72,7 @@
       cpsValDisplay.innerText = cps + " CPS";
 
       responseOutput.innerHTML = `
-        <i class="bi bi-lightning-charge-fill text-warning mr-2"></i> <strong>${reach} Blocks Reach</strong> & <strong>${cps} CPS</strong> Counter-Aura
+        <i class="bi bi-lightning-charge-fill mr-2" style="color: #F5B84B;"></i> <strong>${reach} Blocks Reach</strong> & <strong>${cps} CPS</strong> Aura Granted
       `;
     }
 

@@ -1,36 +1,38 @@
 <section class="hero">
-  <div class="hero-glow"></div>
   <div class="container">
     <div class="row align-items-center">
-      <!-- Left Info -->
-      <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
-        <h1 class="display-4 font-weight-bold mb-3 text-white">
-          FairPlay <br><span class="text-gradient">AntiCheat</span>
+      <!-- Left Text -->
+      <div class="col-lg-5 mb-5 mb-lg-0 pr-lg-4" data-aos="fade-right">
+        <h1 class="hero-title text-white mb-4">
+          Fight Back Against <span class="text-gradient">Cheaters.</span>
         </h1>
-        <p class="lead text-muted mb-4 pr-lg-4">Don't just block cheats. Fight back. Automatically detect cheaters and temporarily grant their victims the same advantages, turning the tables and restoring true balance to your server.</p>
-        <div class="d-flex flex-wrap">
-          <a href="#compensation" class="btn btn-custom-primary mr-3 mb-3">See Countermeasures</a>
-          <a href="#features" class="btn btn-custom-outline mb-3">Explore Features</a>
+        <p class="hero-subtitle mb-5">FairPlay is a high-performance AntiCheat that doesn't just block malicious clients—it temporarily grants victims the exact same advantages, completely neutralizing the cheater's edge.</p>
+        <div class="d-flex flex-wrap align-items-center">
+          <a href="#compensation" class="btn btn-custom-primary px-4 py-3 mr-3 mb-3">Buy Now on BuiltByBit</a>
+          <a href="#features" class="btn btn-custom-outline px-4 py-3 mb-3">View Documentation</a>
         </div>
+        <p class="text-muted mt-3 small">Active Discord Support. Continuous Model Updates.</p>
       </div>
 
-      <!-- Right Interactive Console -->
-      <div class="col-lg-6" data-aos="fade-left">
-        <div class="terminal-window shadow-lg">
-          <div class="terminal-header d-flex align-items-center px-3 py-2">
+      <!-- Right Console (ExploitFixer Style) -->
+      <div class="col-lg-7 pl-lg-5" data-aos="fade-left">
+        <div class="terminal-window">
+          <div class="terminal-header d-flex align-items-center px-4 py-3">
             <span class="terminal-dot bg-danger mr-2"></span>
             <span class="terminal-dot bg-warning mr-2"></span>
             <span class="terminal-dot bg-success"></span>
-            <span class="ml-3 text-muted small font-weight-bold tracking-wide" style="font-size: 0.75rem;">root@fairplay-engine:~</span>
+            <div class="ml-auto flex-grow-1 text-center">
+              <span class="text-muted font-monospace small">root@fairplay-engine:~</span>
+            </div>
           </div>
-          <div class="terminal-body p-3 font-monospace" id="terminal-logs" style="height: 280px; overflow-y: auto;">
-             <div class="log-line text-success">FairPlay Daemon version 2.4.1 initialized.</div>
-             <div class="log-line text-muted">Listening for incoming connections...</div>
-             <div class="log-line text-info">Waiting for combat telemetry...</div>
+          <div class="terminal-body p-4 font-monospace" id="terminal-logs" style="height: 320px; overflow-y: auto; background: var(--bg-darker);">
+             <div class="log-line text-success">[FairPlay] Initializing detection engine...</div>
+             <div class="log-line text-success">[FairPlay] OK. Hooked into PacketEvents successfully.</div>
+             <div class="log-line text-muted">[FairPlay] Listening for combat telemetry...</div>
           </div>
-          <div class="terminal-input-line d-flex px-3 py-2 font-monospace" style="background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05);">
-            <span class="text-success mr-2 font-weight-bold">➜</span>
-            <input type="text" id="terminal-input" class="terminal-input flex-grow-1 bg-transparent border-0 text-light shadow-none small" placeholder="Type 'help' to see commands..." autocomplete="off">
+          <div class="terminal-input-line d-flex px-4 py-3 font-monospace" style="background: var(--bg-main); border-top: 1px solid var(--border-color);">
+            <span class="text-success mr-3 font-weight-bold">➜</span>
+            <input type="text" id="terminal-input" class="terminal-input flex-grow-1 bg-transparent border-0 text-light shadow-none small" placeholder="Type 'help' for commands..." autocomplete="off">
           </div>
         </div>
       </div>
@@ -43,14 +45,12 @@
     const logsContainer = document.getElementById("terminal-logs");
     const inputField = document.getElementById("terminal-input");
 
-    // Simulate incoming logs
     const fakeEvents = [
-      "<span class='text-warning'>[FairPlay]</span> Steve failed <strong>Reach (Type A)</strong> <span style='color: #F5B84B'>[VL: 4]</span>",
-      "<span class='text-warning'>[FairPlay]</span> xX_Sniper_Xx failed <strong>AimBot (Type C)</strong> <span style='color: #F5B84B'>[VL: 9]</span>",
-      "<span class='text-warning'>[FairPlay]</span> DreamFan22 failed <strong>AutoClicker (Type B)</strong> <span style='color: #F5B84B'>[VL: 12]</span>",
-      "<span style='color: #8C57C9; font-weight: bold;'>[FairPlay] Active Countermeasure: Granted EpicGamer 4.5 blocks reach against DreamFan22 (15s)</span>",
-      "<span style='color: #D8616B; font-weight: bold;'>[FairPlay] Console executed BAN on DreamFan22 for Unfair Advantage.</span>",
-      "<span class='text-warning'>[FairPlay]</span> Alex failed <strong>Scaffold (Type A)</strong> <span style='color: #F5B84B'>[VL: 2]</span>"
+      "<span class='text-muted'>[FairPlay]</span> BLOCKED: Invalid Payload from <span class='text-white'>Steve</span> <span style='color: #F5B84B'>[VL: 4]</span>",
+      "<span class='text-muted'>[FairPlay]</span> PREVENTED: Impossible Combat Reach from <span class='text-white'>xX_Sniper_Xx</span> <span style='color: #F5B84B'>[VL: 9]</span>",
+      "<span class='text-muted'>[FairPlay]</span> DETECTED: AutoClicker Type B from <span class='text-white'>DreamFan22</span> <span style='color: #F5B84B'>[VL: 12]</span>",
+      "<span style='color: #8C57C9; font-weight: bold;'>[FairPlay] COUNTERMEASURE: Granted EpicGamer 4.5 blocks reach against DreamFan22 (15s).</span>",
+      "<span style='color: #D8616B; font-weight: bold;'>[FairPlay] BANNED: DreamFan22 for Unfair Advantage.</span>"
     ];
 
     let eventIndex = 0;
@@ -63,30 +63,27 @@
       logsContainer.scrollTop = logsContainer.scrollHeight;
     }
 
-    // Auto generate logs every 3 seconds
     setInterval(() => {
       appendLog(fakeEvents[eventIndex % fakeEvents.length]);
       eventIndex++;
-    }, 3000);
+    }, 3500);
 
-    // Command handling
     inputField.addEventListener("keypress", function(e) {
       if (e.key === "Enter") {
         const val = inputField.value.trim().toLowerCase();
         inputField.value = "";
-
-        appendLog(`<span class="text-secondary">> ${val}</span>`);
+        appendLog(`<span style="color: #9BA5B5">> ${val}</span>`);
 
         if (val === "help") {
-          appendLog("<span class='text-info'>Available commands: help, status, clear, forceban &lt;player&gt;</span>");
+          appendLog("<span class='text-info'>Commands: help, status, clear, forceban &lt;player&gt;</span>");
         } else if (val === "status") {
-          appendLog("<span class='text-success'>System Status: ONLINE. Memory usage: 14MB. Active players tracked: 104.</span>");
+          appendLog("<span class='text-success'>Engine ONLINE. CPU: 0.1%. Monitored: 104 players.</span>");
         } else if (val === "clear") {
           logsContainer.innerHTML = "";
         } else if (val.startsWith("forceban")) {
-          appendLog(`<span style='color: #D8616B'>Manual BAN executed successfully.</span>`);
+          appendLog(`<span style='color: #D8616B'>Manual BAN executed via console.</span>`);
         } else if (val !== "") {
-          appendLog("<span class='text-danger'>Command not found. Type 'help'.</span>");
+          appendLog("<span class='text-danger'>Command not found.</span>");
         }
       }
     });
