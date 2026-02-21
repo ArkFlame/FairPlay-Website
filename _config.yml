@@ -1,0 +1,18 @@
+# Site config
+title: FairPlay AntiCheat
+email: linsaftw@gmail.com
+description: "FairPlay — AntiCheat with a Compensation System: protect legit players by compensating them and neutralizing cheaters."
+baseurl: "" # set if site served from /repo-name
+url: "https://arkflame.github.io" # change to your GitHub Pages URL
+
+theme: minima
+plugins:
+  - jekyll-feed
+
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

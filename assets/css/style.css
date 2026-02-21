@@ -1,0 +1,31 @@
+/* Basic site styles */
+:root{
+  --accent-1: #6a4cff; /* purple */
+  --accent-2: #d8616b; /* coral */
+  --accent-3: #f5b84b; /* gold */
+  --muted: #6b7280;
+  --radius: 12px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+body { font-family: "Inter", sans-serif; background:#f8fafc; color:#111827; -webkit-font-smoothing:antialiased; }
+.brand-title { font-weight:700; color:var(--accent-1); }
+
+/* Hero tweaks */
+.hero { color: #fff; }
+.hero .btn { border-radius: 10px; }
+
+/* Cards */
+.card { border: 0; border-radius: var(--radius); }
+
+/* Small responsive utilities */
+@media (max-width: 767px){
+  .hero { padding: 2rem 0; }
+}
+
+/* Accessibility focus */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(106,76,255,0.15); outline-offset: 2px; }
+
+/* Compensation result highlight */
+#comp-result { padding-top: 0.5rem; }
+#totalComp { color: var(--accent-1); font-weight: 700; }
