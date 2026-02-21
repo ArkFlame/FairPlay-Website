@@ -2,10 +2,8 @@
   <div class="hero-glow"></div>
   <div class="container">
     <div class="row align-items-center">
+      <!-- Left Info -->
       <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
-        <div class="badge px-3 py-2 mb-3" style="background: rgba(106, 76, 255, 0.15); border: 1px solid rgba(106, 76, 255, 0.3); color: #fff; font-weight: 600; border-radius: 20px;">
-          v2.0 • The Countermeasure Update
-        </div>
         <h1 class="display-4 font-weight-bold mb-3 text-white">
           FairPlay <br><span class="text-gradient">AntiCheat</span>
         </h1>
@@ -15,12 +13,82 @@
           <a href="#features" class="btn btn-custom-outline mb-3">Explore Features</a>
         </div>
       </div>
-      <div class="col-lg-6 text-center" data-aos="fade-left">
-        <div class="position-relative">
-          <div class="position-absolute w-100 h-100" style="background: radial-gradient(circle, var(--accent-1) 0%, transparent 60%); filter: blur(70px); opacity: 0.3; top:0; left:0; z-index:-1;"></div>
-          <img src="{{ '/assets/images/banner.jpg' | relative_url }}" alt="FairPlay Engine" class="img-fluid rounded shadow-lg border" style="border-color: rgba(255,255,255,0.08) !important; max-height: 380px; object-fit: cover;">
+
+      <!-- Right Interactive Console -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="terminal-window shadow-lg">
+          <div class="terminal-header d-flex align-items-center px-3 py-2">
+            <span class="terminal-dot bg-danger mr-2"></span>
+            <span class="terminal-dot bg-warning mr-2"></span>
+            <span class="terminal-dot bg-success"></span>
+            <span class="ml-3 text-muted small font-weight-bold tracking-wide" style="font-size: 0.75rem;">root@fairplay-engine:~</span>
+          </div>
+          <div class="terminal-body p-3 font-monospace" id="terminal-logs" style="height: 280px; overflow-y: auto;">
+             <div class="log-line text-success">FairPlay Daemon version 2.4.1 initialized.</div>
+             <div class="log-line text-muted">Listening for incoming connections...</div>
+             <div class="log-line text-info">Waiting for combat telemetry...</div>
+          </div>
+          <div class="terminal-input-line d-flex px-3 py-2 font-monospace" style="background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.05);">
+            <span class="text-success mr-2 font-weight-bold">➜</span>
+            <input type="text" id="terminal-input" class="terminal-input flex-grow-1 bg-transparent border-0 text-light shadow-none small" placeholder="Type 'help' to see commands..." autocomplete="off">
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const logsContainer = document.getElementById("terminal-logs");
+    const inputField = document.getElementById("terminal-input");
+
+    // Simulate incoming logs
+    const fakeEvents = [
+      "<span class='text-warning'>[FairPlay]</span> Steve failed <strong>Reach (Type A)</strong> <span style='color: #F5B84B'>[VL: 4]</span>",
+      "<span class='text-warning'>[FairPlay]</span> xX_Sniper_Xx failed <strong>AimBot (Type C)</strong> <span style='color: #F5B84B'>[VL: 9]</span>",
+      "<span class='text-warning'>[FairPlay]</span> DreamFan22 failed <strong>AutoClicker (Type B)</strong> <span style='color: #F5B84B'>[VL: 12]</span>",
+      "<span style='color: #8C57C9; font-weight: bold;'>[FairPlay] Active Countermeasure: Granted EpicGamer 4.5 blocks reach against DreamFan22 (15s)</span>",
+      "<span style='color: #D8616B; font-weight: bold;'>[FairPlay] Console executed BAN on DreamFan22 for Unfair Advantage.</span>",
+      "<span class='text-warning'>[FairPlay]</span> Alex failed <strong>Scaffold (Type A)</strong> <span style='color: #F5B84B'>[VL: 2]</span>"
+    ];
+
+    let eventIndex = 0;
+
+    function appendLog(htmlContent) {
+      const line = document.createElement("div");
+      line.className = "log-line";
+      line.innerHTML = htmlContent;
+      logsContainer.appendChild(line);
+      logsContainer.scrollTop = logsContainer.scrollHeight;
+    }
+
+    // Auto generate logs every 3 seconds
+    setInterval(() => {
+      appendLog(fakeEvents[eventIndex % fakeEvents.length]);
+      eventIndex++;
+    }, 3000);
+
+    // Command handling
+    inputField.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        const val = inputField.value.trim().toLowerCase();
+        inputField.value = "";
+
+        appendLog(`<span class="text-secondary">> ${val}</span>`);
+
+        if (val === "help") {
+          appendLog("<span class='text-info'>Available commands: help, status, clear, forceban &lt;player&gt;</span>");
+        } else if (val === "status") {
+          appendLog("<span class='text-success'>System Status: ONLINE. Memory usage: 14MB. Active players tracked: 104.</span>");
+        } else if (val === "clear") {
+          logsContainer.innerHTML = "";
+        } else if (val.startsWith("forceban")) {
+          appendLog(`<span style='color: #D8616B'>Manual BAN executed successfully.</span>`);
+        } else if (val !== "") {
+          appendLog("<span class='text-danger'>Command not found. Type 'help'.</span>");
+        }
+      }
+    });
+  });
+</script>

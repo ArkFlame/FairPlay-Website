@@ -1,8 +1,5 @@
-/* Custom properties matching banner colors */
+/* Custom properties matching the requested 5-color gradient */
 :root {
-  --accent-1: #6a4cff; /* purple */
-  --accent-2: #d8616b; /* coral */
-  --accent-3: #f5b84b; /* gold */
   --bg-dark: #0a0a0f;
   --nav-bg: rgba(10, 10, 15, 0.75);
   --card-bg: rgba(255, 255, 255, 0.02);
@@ -10,13 +7,17 @@
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --radius: 16px;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* The new gradient definition */
+  --brand-gradient: linear-gradient(120deg, #5A63E6 0%, #8C57C9 25%, #D8616B 50%, #F18B5C 75%, #F5B84B 100%);
+
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 body {
   background: var(--bg-dark);
   color: var(--text-main);
-  font-family: "Inter", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -28,7 +29,7 @@ body {
 
 /* Typography & Gradients */
 .text-gradient {
-  background: linear-gradient(120deg, var(--accent-1), var(--accent-2), var(--accent-3));
+  background: var(--brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -54,7 +55,7 @@ body {
 }
 .nav-link:hover { color: #fff !important; }
 
-/* Interactive Dropdown menus (Polar inspired) */
+/* Dropdown menus */
 @media (min-width: 992px) {
   .hover-dropdown:hover .dropdown-menu {
     display: block;
@@ -85,7 +86,7 @@ body {
   padding: 0.6rem 1rem;
 }
 .dropdown-item:hover {
-  background: rgba(106, 76, 255, 0.15);
+  background: rgba(90, 99, 230, 0.15); /* matching first gradient color roughly */
   color: #fff;
 }
 
@@ -97,11 +98,11 @@ body {
 }
 .hero-glow {
   position: absolute;
-  top: -10%;
-  left: 30%;
-  width: 50vw;
+  top: -20%;
+  left: 50%;
+  width: 70vw;
   height: 50vw;
-  background: radial-gradient(circle, var(--accent-1) 0%, transparent 60%);
+  background: var(--brand-gradient);
   transform: translateX(-50%);
   opacity: 0.15;
   filter: blur(100px);
@@ -110,21 +111,39 @@ body {
 }
 .hero .container { position: relative; z-index: 1; }
 
+/* Terminal Console Styles */
+.terminal-window {
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+.terminal-header {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+.font-monospace { font-family: 'JetBrains Mono', monospace !important; }
+.log-line { margin-bottom: 6px; font-size: 0.85rem; line-height: 1.5; }
+.terminal-input:focus { outline: none; }
+.terminal-input::placeholder { color: rgba(255,255,255,0.3); }
+
 /* Buttons */
 .btn-custom-primary {
-  background: linear-gradient(120deg, var(--accent-1), var(--accent-2));
+  background: var(--brand-gradient);
   color: #fff;
   border: none;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.75rem 1.75rem;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(106, 76, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(216, 97, 107, 0.3);
 }
 .btn-custom-primary:hover {
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(106, 76, 255, 0.5);
+  box-shadow: 0 6px 20px rgba(216, 97, 107, 0.5);
 }
 .btn-custom-outline {
   background: rgba(255,255,255,0.03);
@@ -142,6 +161,19 @@ body {
   border-color: rgba(255,255,255,0.25);
 }
 
+/* Projects Banner */
+.project-logo {
+  height: 60px;
+  width: auto;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s, border-color 0.3s;
+  background: rgba(0,0,0,0.2);
+}
+.project-logo:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.3);
+}
+
 /* Cards */
 .card {
   background: var(--card-bg);
@@ -153,33 +185,12 @@ body {
 }
 .card:hover {
   transform: translateY(-5px);
-  border-color: rgba(106, 76, 255, 0.4);
+  border-color: rgba(140, 87, 201, 0.4);
 }
-.card-title {
-  font-weight: 700;
-  color: #fff;
-}
-
-/* Feature Icons */
-.feature-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-}
-
-/* Form inputs styling */
-.custom-range::-webkit-slider-thumb {
-  background: var(--accent-1);
-}
-.custom-range::-moz-range-thumb {
-  background: var(--accent-1);
-}
+.card-title { font-weight: 700; color: #fff; }
 
 /* Utilities */
 .border-top { border-top: 1px solid var(--card-border) !important; }
+.border-bottom { border-bottom: 1px solid var(--card-border) !important; }
 .text-muted { color: var(--text-muted) !important; }
 .hover-white:hover { color: #fff !important; }

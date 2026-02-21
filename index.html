@@ -3,14 +3,41 @@ title: Home
 layout: default
 ---
 {% include hero.html %}
+
+<!-- Our Projects Section -->
+<section id="projects" class="py-5" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--card-border);">
+  <div class="container text-center" data-aos="fade-up">
+    <h6 class="text-muted font-weight-bold mb-4 text-uppercase tracking-wide" style="letter-spacing: 2px;">Our Projects</h6>
+    <div class="d-flex justify-content-center flex-wrap align-items-center">
+      <img src="./assets/images/flamecord.jpg" alt="FlameCord" class="project-logo mx-3 my-2 rounded shadow-sm">
+      <img src="./assets/images/exploitfixer.jpg" alt="ExploitFixer" class="project-logo mx-3 my-2 rounded shadow-sm">
+      <img src="./assets/images/veloflame.jpg" alt="VeloFlame" class="project-logo mx-3 my-2 rounded shadow-sm">
+    </div>
+  </div>
+</section>
+
 <main class="py-5">
   {% include features.html %}
   {% include compensation.html %}
-  <section id="cta" class="text-center my-5 py-5 position-relative">
-    <div class="container" data-aos="zoom-in">
-      <h3 class="display-5 font-weight-bold mb-3 text-white">Protect your server with <span class="text-gradient">FairPlay</span></h3>
-      <p class="lead text-muted mb-4 mx-auto" style="max-width: 600px;">Install, configure, and run continuous detection — backed by Active Countermeasures that completely turn a cheater's advantage against them.</p>
-      <a href="#features" class="btn btn-custom-primary btn-lg px-5 py-3 shadow-lg mt-2">Get Started Now</a>
+
+  <!-- Community / Discord Section -->
+  <section id="community" class="my-5 py-5 border-top">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+          <h2 class="font-weight-bold mb-3 text-white">Join the <span class="text-gradient">Community</span></h2>
+          <p class="lead text-muted mb-4">Connect with other server owners, get live support from our team, and stay updated with the latest countermeasure updates.</p>
+          <a href="https://discord.gg/MZpkaFDE9j" target="_blank" class="btn btn-custom-primary btn-lg px-5 py-3 shadow-lg mt-2">
+            <i class="bi bi-discord mr-2"></i> Join Discord
+          </a>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-left">
+          <!-- Discord Widget -->
+          <div class="discord-widget-wrapper shadow-lg rounded" style="border: 1px solid var(--card-border); overflow: hidden;">
+            <iframe src="https://discord.com/widget?id=1465699999903121513&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
