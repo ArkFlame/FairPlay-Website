@@ -3,12 +3,14 @@ title: Home
 layout: default
 ---
 {% include hero.html %}
-<main class="container py-5">
+<main class="py-5">
   {% include features.html %}
   {% include compensation.html %}
-  <section id="cta" class="text-center my-5">
-    <h3 class="mb-3">Protect your server with FairPlay</h3>
-    <p class="lead mb-4">Install, configure, and run continuous detection — backed by the Compensation System that removes cheaters' advantage.</p>
-    <a href="#compensation" class="btn btn-lg btn-primary">See Compensation System</a>
+  <section id="cta" class="text-center my-5 py-5 position-relative">
+    <div class="container" data-aos="zoom-in">
+      <h3 class="display-5 font-weight-bold mb-3 text-white">Protect your server with <span class="text-gradient">FairPlay</span></h3>
+      <p class="lead text-muted mb-4 mx-auto" style="max-width: 600px;">Install, configure, and run continuous detection — backed by Active Countermeasures that completely turn a cheater's advantage against them.</p>
+      <a href="#features" class="btn btn-custom-primary btn-lg px-5 py-3 shadow-lg mt-2">Get Started Now</a>
+    </div>
   </section>
 </main>

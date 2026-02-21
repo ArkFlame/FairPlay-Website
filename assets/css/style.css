@@ -1,31 +1,185 @@
-/* Basic site styles */
-:root{
+/* Custom properties matching banner colors */
+:root {
   --accent-1: #6a4cff; /* purple */
   --accent-2: #d8616b; /* coral */
   --accent-3: #f5b84b; /* gold */
-  --muted: #6b7280;
-  --radius: 12px;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --bg-dark: #0a0a0f;
+  --nav-bg: rgba(10, 10, 15, 0.75);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 16px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-body { font-family: "Inter", sans-serif; background:#f8fafc; color:#111827; -webkit-font-smoothing:antialiased; }
-.brand-title { font-weight:700; color:var(--accent-1); }
+body {
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Hero tweaks */
-.hero { color: #fff; }
-.hero .btn { border-radius: 10px; }
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* Typography & Gradients */
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent-1), var(--accent-2), var(--accent-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navbar / Header */
+.glass-nav {
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+}
+.brand-title {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  padding: 1rem 1.2rem !important;
+}
+.nav-link:hover { color: #fff !important; }
+
+/* Interactive Dropdown menus (Polar inspired) */
+@media (min-width: 992px) {
+  .hover-dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .dropdown-menu {
+    display: block;
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(15, 15, 22, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    margin-top: 0;
+  }
+}
+.dropdown-item {
+  color: var(--text-muted);
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+}
+.dropdown-item:hover {
+  background: rgba(106, 76, 255, 0.15);
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -10%;
+  left: 30%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--accent-1) 0%, transparent 60%);
+  transform: translateX(-50%);
+  opacity: 0.15;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; }
+
+/* Buttons */
+.btn-custom-primary {
+  background: linear-gradient(120deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(106, 76, 255, 0.3);
+}
+.btn-custom-primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 76, 255, 0.5);
+}
+.btn-custom-outline {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  transition: all 0.2s;
+  backdrop-filter: blur(5px);
+}
+.btn-custom-outline:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
 
 /* Cards */
-.card { border: 0; border-radius: var(--radius); }
-
-/* Small responsive utilities */
-@media (max-width: 767px){
-  .hero { padding: 2rem 0; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(106, 76, 255, 0.4);
+}
+.card-title {
+  font-weight: 700;
+  color: #fff;
 }
 
-/* Accessibility focus */
-a:focus, button:focus, input:focus { outline: 3px solid rgba(106,76,255,0.15); outline-offset: 2px; }
+/* Feature Icons */
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
 
-/* Compensation result highlight */
-#comp-result { padding-top: 0.5rem; }
-#totalComp { color: var(--accent-1); font-weight: 700; }
+/* Form inputs styling */
+.custom-range::-webkit-slider-thumb {
+  background: var(--accent-1);
+}
+.custom-range::-moz-range-thumb {
+  background: var(--accent-1);
+}
+
+/* Utilities */
+.border-top { border-top: 1px solid var(--card-border) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.hover-white:hover { color: #fff !important; }

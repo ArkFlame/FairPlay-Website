@@ -1,50 +1,87 @@
-<section id="compensation" class="my-5 py-4 border-top">
-  <div class="row align-items-center">
-    <div class="col-lg-6" data-aos="fade-right">
-      <h2>Compensation System</h2>
-      <p class="lead">When a cheater is confirmed, FairPlay reduces their effective advantage and automatically compensates affected players — restoring fairness and trust on your server.</p>
-      <ul>
-        <li>Automated victim detection and compensation events.</li>
-        <li>Configurable compensation rules (items, currency, XP, temporary buffs).</li>
-        <li>Anti-retaliation: penalize repeated offenders and revoke ill-gotten items.</li>
-      </ul>
-      <p class="mt-3">The result: cheaters no longer profit from cheating, and legitimate players are restored — discouraging abuse.</p>
-    </div>
+<section id="compensation" class="my-5 py-5 border-top">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 pr-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+        <h2 class="font-weight-bold mb-3 text-white">Active <span class="text-gradient">Countermeasures</span></h2>
+        <p class="lead text-muted mb-4">Why just kick a cheater when you can let the community fight back? When an unfair advantage is detected, FairPlay briefly empowers the victim with the <strong>exact same abilities</strong> to turn the tide.</p>
+        <ul class="list-unstyled">
+          <li class="mb-3 d-flex">
+            <i class="bi bi-shield-shaded text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
+            <span class="text-muted"><strong>Reach equalizer:</strong> If a cheater strikes with 5-block reach, their target instantly gets 5-block reach strictly against them.</span>
+          </li>
+          <li class="mb-3 d-flex">
+            <i class="bi bi-cpu text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
+            <span class="text-muted"><strong>Anti-retaliation logic:</strong> Only triggers against confirmed cheaters. Legitimate player combat remains 100% unaffected.</span>
+          </li>
+          <li class="mb-3 d-flex">
+            <i class="bi bi-controller text-success mr-3 mt-1" style="font-size: 1.2rem;"></i>
+            <span class="text-muted"><strong>Active discouragement:</strong> Cheaters lose their core incentive when their victims become unkillable counter-threats.</span>
+          </li>
+        </ul>
+      </div>
 
-    <div class="col-lg-6" data-aos="fade-left">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">Compensation Simulator</h5>
-          <p class="text-muted small">Experiment with compensation rules to see how victims are restored.</p>
-          <form id="comp-form">
-            <div class="form-group">
-              <label>Number of victims</label>
-              <input id="victims" type="number" class="form-control" min="1" value="3">
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="card p-2 shadow-lg">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="card-title mb-0">Countermeasure Simulator</h5>
+              <span class="badge badge-pill px-3 py-1" style="background: rgba(106,76,255,0.2); border: 1px solid rgba(106,76,255,0.4); color: #fff;">Interactive</span>
             </div>
-            <div class="form-group">
-              <label>Cheater severity</label>
-              <select id="severity" class="form-control">
-                <option value="1">Low</option>
-                <option value="1.5" selected>Medium</option>
-                <option value="2">High</option>
-                <option value="3">Extreme</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Base compensation (coins per victim)</label>
-              <input id="base" type="number" class="form-control" min="0" value="100">
-            </div>
-            <button type="button" id="simulateBtn" class="btn btn-primary">Simulate</button>
-          </form>
+            <p class="text-muted small mb-4">Adjust the cheater's detected advantage below to see how the system immediately responds.</p>
 
-          <hr>
+            <form id="comp-form">
+              <div class="form-group mb-4">
+                <label class="text-muted small font-weight-bold text-uppercase tracking-wide">Cheater's Detected Reach</label>
+                <input id="cheatReach" type="range" class="custom-range mt-2" min="3.0" max="7.0" step="0.1" value="4.5">
+                <div class="text-right text-white font-weight-bold mt-1" id="reachValDisplay">4.5 Blocks</div>
+              </div>
 
-          <div id="comp-result" class="text-center">
-            <div class="h4" id="totalComp">Total compensation: —</div>
-            <div class="small text-muted" id="perVictim">Per victim: —</div>
+              <div class="form-group mb-4">
+                <label class="text-muted small font-weight-bold text-uppercase tracking-wide">Cheater's Aura Speed</label>
+                <input id="cheatCps" type="range" class="custom-range mt-2" min="10" max="30" step="1" value="18">
+                <div class="text-right text-white font-weight-bold mt-1" id="cpsValDisplay">18 CPS</div>
+              </div>
+            </form>
+
+            <div class="p-4 rounded mt-4" style="background: rgba(0,0,0,0.4); border: 1px solid var(--card-border);">
+              <div class="small text-uppercase text-muted mb-2 font-weight-bold">System Response Status</div>
+              <div class="h6 mb-2" style="color: var(--accent-3); font-weight: 700;">Victim Granted Advantage:</div>
+              <div class="text-white mb-2" id="responseOutput" style="font-size: 1.1rem;">
+                <i class="bi bi-lightning-charge-fill text-warning mr-2"></i> <strong>4.5 Blocks Reach</strong> & <strong>18 CPS</strong> Aura
+              </div>
+              <div class="text-muted small border-top pt-2 mt-2">
+                <i class="bi bi-lock-fill mr-1"></i> Target locked strictly onto cheater for 15 seconds.
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const cheatReach = document.getElementById("cheatReach");
+    const cheatCps = document.getElementById("cheatCps");
+    const reachValDisplay = document.getElementById("reachValDisplay");
+    const cpsValDisplay = document.getElementById("cpsValDisplay");
+    const responseOutput = document.getElementById("responseOutput");
+
+    function updateSimulation() {
+      const reach = parseFloat(cheatReach.value).toFixed(1);
+      const cps = parseInt(cheatCps.value);
+
+      reachValDisplay.innerText = reach + " Blocks";
+      cpsValDisplay.innerText = cps + " CPS";
+
+      responseOutput.innerHTML = `
+        <i class="bi bi-lightning-charge-fill text-warning mr-2"></i> <strong>${reach} Blocks Reach</strong> & <strong>${cps} CPS</strong> Counter-Aura
+      `;
+    }
+
+    cheatReach.addEventListener("input", updateSimulation);
+    cheatCps.addEventListener("input", updateSimulation);
+  });
+</script>
