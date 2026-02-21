@@ -7,7 +7,7 @@
   --text-main: #FFFFFF;
   --text-muted: #9BA5B5;
 
-  /* The exact 5-color gradient */
+  /* The prevalent 5-color gradient */
   --brand-gradient: linear-gradient(120deg, #5A63E6 0%, #8C57C9 25%, #D8616B 50%, #F18B5C 75%, #F5B84B 100%);
 
   font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
@@ -26,6 +26,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  font-weight: 800 !important; /* Force bold */
 }
 
 .icon-gradient i {
@@ -35,48 +36,54 @@ body {
   font-size: 1.8rem;
 }
 
-/* Navbar / Header (Flat, no borders) */
+/* Navbar / Header */
 .navbar {
   background: var(--bg-main) !important;
   padding: 1.5rem 0;
 }
 .brand-title {
-  font-weight: 800;
-  font-size: 1.4rem;
+  font-weight: 900;
+  font-size: 1.5rem;
   letter-spacing: -0.5px;
-  color: #fff;
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.nav-link {
-  color: var(--text-muted) !important;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-  padding: 0.5rem 1.2rem !important;
-}
-.nav-link:hover { color: #fff !important; }
 
-/* Buttons */
+/* Buttons - Now heavily using the gradient */
 .btn-custom-primary {
   background: var(--brand-gradient);
   color: #fff !important;
   border: none;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: opacity 0.2s;
+  font-weight: 800; /* Extra bold */
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 15px rgba(216, 97, 107, 0.2);
 }
-.btn-custom-primary:hover { opacity: 0.9; }
+.btn-custom-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(216, 97, 107, 0.4);
+}
 
 .btn-custom-outline {
   background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-main) !important;
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--bg-main), var(--bg-main)), var(--brand-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #fff !important;
   border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 1rem;
   transition: all 0.2s;
 }
-.btn-custom-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+.btn-custom-outline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(140, 87, 201, 0.3);
+}
 
 /* Hero Section */
 .hero {
@@ -84,15 +91,16 @@ body {
   padding: 6rem 0;
 }
 .hero-title {
-  font-weight: 800;
-  font-size: 3.5rem;
+  font-weight: 900;
+  font-size: 3.8rem;
   line-height: 1.15;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
 }
 .hero-subtitle {
   color: var(--text-muted);
   font-size: 1.15rem;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 /* EF Style Cards */
@@ -102,14 +110,40 @@ body {
   border-radius: 12px;
   transition: border-color 0.3s ease;
 }
-.ef-card:hover { border-color: rgba(140, 87, 201, 0.4); } /* Hover border with gradient color */
-.ef-card-title { font-weight: 800; color: #fff; font-size: 1.1rem; }
-.ef-card-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+.ef-card:hover { border-color: rgba(140, 87, 201, 0.4); }
+.ef-card-title { font-weight: 800; color: #fff; font-size: 1.2rem; }
+.ef-card-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; font-weight: 500; }
 
 /* Projects Banner */
-.project-brand { display: flex; align-items: center; opacity: 0.8; transition: opacity 0.2s; cursor: default; }
-.project-brand:hover { opacity: 1; }
-.project-img { width: 28px; height: 28px; object-fit: cover; }
+.project-brand {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.project-brand:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+.project-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.3);
+}
+.project-name {
+  font-size: 1.2rem !important;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: color 0.3s;
+}
+.project-brand:hover .project-name {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /* Terminal Console (Flat Dark Style) */
 .terminal-window {
@@ -120,13 +154,13 @@ body {
 }
 .terminal-header { border-bottom: 1px solid var(--border-color); }
 .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-.font-monospace { font-family: 'JetBrains Mono', monospace !important; }
+.font-monospace { font-family: 'JetBrains Mono', monospace !important; font-weight: 600; }
 .log-line { margin-bottom: 8px; font-size: 0.85rem; line-height: 1.5; }
 .terminal-input:focus { outline: none; }
 .terminal-input::placeholder { color: rgba(255,255,255,0.2); }
 
 /* Form inputs styling */
-.custom-range::-webkit-slider-thumb { background: #D8616B; } /* Gradient matching color */
+.custom-range::-webkit-slider-thumb { background: #D8616B; }
 .custom-range::-moz-range-thumb { background: #D8616B; }
 
 /* Scrollbar */

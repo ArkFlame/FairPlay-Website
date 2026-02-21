@@ -4,23 +4,28 @@ layout: default
 ---
 {% include hero.html %}
 
-<!-- Our Projects Section (Styled like ExploitFixer's "Available On" section) -->
-<section id="projects" class="py-4" style="background: var(--bg-darker); border-bottom: 1px solid var(--border-color);">
-  <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center" data-aos="fade-up">
-    <span class="text-muted font-weight-bold mr-md-4 mb-3 mb-md-0" style="font-size: 0.9rem;">OUR PROJECTS:</span>
+<!-- Our Projects Section (Full Horizontal Sponsor Band) -->
+<section id="projects" class="py-5 w-100" style="background: var(--bg-darker); border-bottom: 1px solid var(--border-color); box-shadow: inset 0 0 20px rgba(0,0,0,0.2);">
+  <div class="container text-center" data-aos="fade-up">
+    <!-- Vertically stacked title -->
+    <h6 class="text-muted font-weight-bold mb-4 text-uppercase" style="font-size: 0.85rem; letter-spacing: 2px;">Our Projects</h6>
+
+    <!-- Horizontal list of clickable projects -->
     <div class="d-flex align-items-center flex-wrap justify-content-center">
-      <div class="project-brand mx-3 my-2">
-        <img src="./assets/images/flamecord.jpg" alt="FlameCord" class="rounded project-img">
-        <span class="ml-2 font-weight-bold text-white small">FlameCord</span>
-      </div>
-      <div class="project-brand mx-3 my-2">
-        <img src="./assets/images/exploitfixer.jpg" alt="ExploitFixer" class="rounded project-img">
-        <span class="ml-2 font-weight-bold text-white small">ExploitFixer</span>
-      </div>
-      <div class="project-brand mx-3 my-2">
-        <img src="./assets/images/veloflame.jpg" alt="VeloFlame" class="rounded project-img">
-        <span class="ml-2 font-weight-bold text-white small">VeloFlame</span>
-      </div>
+      <a href="https://flamecord.com" target="_blank" class="project-brand mx-4 my-3 text-decoration-none">
+        <img src="./assets/images/flamecord.jpg" alt="FlameCord" class="rounded project-img shadow-sm">
+        <span class="ml-3 font-weight-bold text-white project-name">FlameCord</span>
+      </a>
+
+      <a href="https://exploitfixer.org" target="_blank" class="project-brand mx-4 my-3 text-decoration-none">
+        <img src="./assets/images/exploitfixer.jpg" alt="ExploitFixer" class="rounded project-img shadow-sm">
+        <span class="ml-3 font-weight-bold text-white project-name">ExploitFixer</span>
+      </a>
+
+      <a href="https://veloflame.com" target="_blank" class="project-brand mx-4 my-3 text-decoration-none">
+        <img src="./assets/images/veloflame.jpg" alt="VeloFlame" class="rounded project-img shadow-sm">
+        <span class="ml-3 font-weight-bold text-white project-name">VeloFlame</span>
+      </a>
     </div>
   </div>
 </section>
